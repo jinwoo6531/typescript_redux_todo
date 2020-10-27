@@ -1,6 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import { Todo, fetchTodos } from '../actions';
+import { StoreState } from "../reducers";
 
-function App() {
+interface AppProps {
+    todos: Todo[],
+    fetchTodos() : any;
+}
+
+
+const App: React.FC<AppProps> = ()  => {
     return (
         <div>
             
@@ -8,4 +17,16 @@ function App() {
     )
 }
 
-export default App
+
+
+const mapStateToProps = ({todos}:StoreState) : { todos : Todo[]} => {
+    return { todos };
+
+}
+
+//redux와 연결
+export const AppReal = connect(
+    mapStateToProps,
+    { fetchTodos }
+)(App)
+
