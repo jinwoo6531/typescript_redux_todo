@@ -1,32 +1,28 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
-import { Todo, fetchTodos } from '../actions';
-import { StoreState } from "../reducers";
+import { Todo,fetchTodos } from '../actions';
+import { StoreState } from "../reducers"
 
 interface AppProps {
-    todos: Todo[],
+    todos : Todo[];
     fetchTodos() : any;
 }
 
 
-const App: React.FC<AppProps> = ()  => {
-    return (
-        <div>
-            
-        </div>
-    )
+
+export class _App extends React.Component<AppProps> {
+    render() {
+
+        return <div>Hi</div>
+    }
 }
 
+const mapStateToProps = ( { todos }: StoreState) : { todos : Todo[] } => {
+    return { todos }
 
+};
 
-const mapStateToProps = ({todos}:StoreState) : { todos : Todo[]} => {
-    return { todos };
-
-}
-
-//redux와 연결
-export const AppReal = connect(
+export const App = connect(
     mapStateToProps,
-    { fetchTodos }
-)(App)
-
+    {fetchTodos}
+)(_App);
